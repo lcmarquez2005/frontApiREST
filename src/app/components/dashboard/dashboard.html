@@ -1,143 +1,150 @@
-<div class="min-h-screen bg-gray-100 py-8 px-4">
-    <div class="max-w-4xl mx-auto">
-        <h1 class="text-4xl font-bold text-center text-gray-800 mb-8">API REST Front</h1>
+<div class="dashboard-root">
+  <div class="dashboard-container">
+    <!-- Header -->
+    <header class="dashboard-header">
+      <div class="header-glow"></div>
+      <h1 class="title" style="color:#c8e6f5;">
+        <span class="title-api" style="color:#00d4ff;text-shadow:0 0 20px #00d4ff;">API</span>
+        <span class="title-rest" style="color:#c8e6f5;"> REST</span>
+        <span class="title-console" style="color:#ff6b35;text-shadow:0 0 12px #ff6b35;display:block;font-size:0.55em;letter-spacing:0.4em;margin-top:0.4em;">CONSOLE</span>
+      </h1>
+      <p class="subtitle" style="color:rgba(200,230,245,0.6);">Interfaz de administración de recursos</p>
+    </header>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <!-- GET Request -->
-            <div class="bg-white col-span-2 rounded-lg shadow-md p-6">
-                <h2 class="text-2xl font-semibold text-green-600 mb-4">GET Request</h2>
-                <div class="space-y-4">
-                    <p class="text-sm text-gray-600">Fetch all items from the API</p>
-                    <button (click)="ngOnInit()"
-                        class="w-full bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition duration-200">
-                        Send GET Request
-                    </button>
-                </div>
-                <div *ngIf="items.length > 0" class="mt-4">
-                    <h3 class="font-semibold text-gray-700 mb-2">Results:</h3>
-                    <ul class="space-y-2">
-                        <li *ngFor="let item of items" class="p-2 bg-gray-100 rounded">
-                            <p><strong>ID:</strong> {{ item.id }}</p>
-                            <p><strong>Name:</strong> {{ item.name }}</p>
-                            <p *ngIf="item.data?.age"><strong>Age:</strong> {{ item.data?.age }}</p>
-                            <p *ngIf="item.data?.email"><strong>Email:</strong> {{ item.data?.email }}</p>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- POST Request -->
-            <div class="bg-white rounded-lg shadow-md p-6">
-                <h2 class="text-2xl font-semibold text-blue-600 mb-4">POST Request</h2>
-                <form #postForm="ngForm" (ngSubmit)="onCreate(postForm.value)" class="space-y-4">
-                    <div>
-                        <label for="postName" class="block text-sm font-medium text-gray-700 mb-1">Name</label>
-                        <input type="text" id="postName" name="name" ngModel placeholder="Enter name"
-                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                            required>
-                    </div>
-                    <div>
-                        <label for="postEmail" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
-                        <input type="email" id="postEmail" name="email" ngModel placeholder="Enter email"
-                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                            required>
-                    </div>
-                    <div>
-                        <label for="postAge" class="block text-sm font-medium text-gray-700 mb-1">Age</label>
-                        <input type="number" id="postAge" name="age" ngModel placeholder="Enter age"
-                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                            required>
-                    </div>
-                    <button type="submit"
-                        class="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition duration-200">
-                        Send POST Request
-                    </button>
-                </form>
-            </div>
-
-            <!-- PUT Request -->
-            <div class="bg-white rounded-lg shadow-md p-6">
-                <h2 class="text-2xl font-semibold text-yellow-600 mb-4">PUT Request</h2>
-                <form #putForm="ngForm" (ngSubmit)="onUpdate(putForm.value.id, putForm.value)" class="space-y-4">
-                    <div>
-                        <label for="putId" class="block text-sm font-medium text-gray-700 mb-1">ID</label>
-                        <input type="text" id="putId" name="id" ngModel placeholder="Enter item ID"
-                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
-                            required>
-                    </div>
-                    <div>
-                        <label for="putName" class="block text-sm font-medium text-gray-700 mb-1">Name</label>
-                        <input type="text" id="putName" name="name" ngModel placeholder="Enter name"
-                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
-                            required>
-                    </div>
-                    <div>
-                        <label for="putAge" class="block text-sm font-medium text-gray-700 mb-1">Age</label>
-                        <input type="number" id="putAge" name="age" ngModel placeholder="Enter age"
-                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
-                            required>
-                    </div>
-                    <div>
-                        <label for="putEmail" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
-                        <input type="email" id="putEmail" name="email" ngModel placeholder="Enter email"
-                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
-                            required>
-                    </div>
-                    <button type="submit"
-                        class="w-full bg-yellow-600 text-white py-2 px-4 rounded-md hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 transition duration-200">
-                        Send PUT Request
-                    </button>
-                </form>
-            </div>
-
-            <!-- PATCH Request -->
-            <div class="bg-white rounded-lg shadow-md p-6">
-                <h2 class="text-2xl font-semibold text-purple-600 mb-4">PATCH Request</h2>
-                <form #patchForm="ngForm" (ngSubmit)="onUpdate(patchForm.value.id, patchForm.value)" class="space-y-4">
-                    <div>
-                        <label for="patchId" class="block text-sm font-medium text-gray-700 mb-1">ID</label>
-                        <input type="text" id="patchId" name="id" ngModel placeholder="Enter item ID"
-                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                            required>
-                    </div>
-                    <div>
-                        <label for="patchName" class="block text-sm font-medium text-gray-700 mb-1">Name (optional)</label>
-                        <input type="text" id="patchName" name="name" ngModel placeholder="Enter name"
-                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent">
-                    </div>
-                    <div>
-                        <label for="patchAge" class="block text-sm font-medium text-gray-700 mb-1">Age (optional)</label>
-                        <input type="number" id="patchAge" name="age" ngModel placeholder="Enter age"
-                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent">
-                    </div>
-                    <div>
-                        <label for="patchEmail" class="block text-sm font-medium text-gray-700 mb-1">Email (optional)</label>
-                        <input type="email" id="patchEmail" name="email" ngModel placeholder="Enter new email"
-                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent">
-                    </div>
-                    <button type="submit"
-                        class="w-full bg-purple-600 text-white py-2 px-4 rounded-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 transition duration-200">
-                        Send PATCH Request
-                    </button>
-                </form>
-            </div>
-
-            <!-- DELETE Request -->
-            <div class="bg-white rounded-lg shadow-md p-6">
-                <h2 class="text-2xl font-semibold text-red-600 mb-4">DELETE Request</h2>
-                <form #deleteForm="ngForm" (ngSubmit)="onDelete(deleteForm.value.id)" class="space-y-4">
-                    <div>
-                        <label for="deleteId" class="block text-sm font-medium text-gray-700 mb-1">ID</label>
-                        <input type="text" id="deleteId" name="id" ngModel placeholder="Enter item ID"
-                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
-                            required>
-                    </div>
-                    <button type="submit"
-                        class="w-full bg-red-600 text-white py-2 px-4 rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition duration-200">
-                        Send DELETE Request
-                    </button>
-                </form>
-            </div>
+    <!-- GET Section - Full Width -->
+    <section class="panel panel-get">
+      <div class="panel-header">
+        <span class="method-badge badge-get">GET</span>
+        <h2 style="color:#daeeff;">Obtener Registros</h2>
+        <p class="panel-desc">Consulta todos los objetos de la colección</p>
+      </div>
+      <button (click)="ngOnInit()" class="btn btn-get">
+        <span class="btn-icon">⟳</span> Ejecutar GET
+      </button>
+      <div *ngIf="items.length > 0" class="results-grid">
+        <div *ngFor="let item of items" class="result-card">
+          <div class="result-id-row">
+            <span class="result-id-label">ID</span>
+            <span class="result-id-value">{{ item.id }}</span>
+            <button class="copy-btn" (click)="copyId(item.id)" title="Copiar ID">⧉</button>
+          </div>
+          <div class="result-name" style="color:#e8f4ff;">{{ item.name }}</div>
+          <div class="result-meta" *ngIf="item.data?.age">
+            <span class="meta-chip">👤 {{ item.data?.age }} años</span>
+          </div>
+          <div class="result-meta" *ngIf="item.data?.email">
+            <span class="meta-chip">✉ {{ item.data?.email }}</span>
+          </div>
         </div>
+      </div>
+      <div *ngIf="items.length === 0" class="empty-state">
+        Sin datos — presiona Ejecutar GET
+      </div>
+    </section>
+
+    <div class="panels-grid">
+      <!-- POST -->
+      <section class="panel panel-post">
+        <div class="panel-header">
+          <span class="method-badge badge-post">POST</span>
+          <h2 style="color:#daeeff;">Crear Registro</h2>
+        </div>
+        <form #postForm="ngForm" (ngSubmit)="onCreate(postForm.value); postForm.reset()" class="form">
+          <div class="field">
+            <label style="color:#7fb8d4;">Nombre</label>
+            <input type="text" name="name" ngModel placeholder="ej. Juan García" required />
+          </div>
+          <div class="field">
+            <label style="color:#7fb8d4;">Email</label>
+            <input type="email" name="email" ngModel placeholder="ej. juan@mail.com" required />
+          </div>
+          <div class="field">
+            <label style="color:#7fb8d4;">Edad</label>
+            <input type="number" name="age" ngModel placeholder="ej. 25" required />
+          </div>
+          <button type="submit" class="btn btn-post">
+            <span class="btn-icon">+</span> Crear
+          </button>
+        </form>
+      </section>
+
+      <!-- PUT -->
+      <section class="panel panel-put">
+        <div class="panel-header">
+          <span class="method-badge badge-put">PUT</span>
+          <h2 style="color:#daeeff;">Reemplazar Registro</h2>
+        </div>
+        <form #putForm="ngForm" (ngSubmit)="onPut(putForm.value.id, putForm.value); putForm.reset()" class="form">
+          <div class="field">
+            <label style="color:#7fb8d4;">ID</label>
+            <input type="text" name="id" ngModel placeholder="ID del objeto" required />
+          </div>
+          <div class="field">
+            <label style="color:#7fb8d4;">Nombre</label>
+            <input type="text" name="name" ngModel placeholder="Nuevo nombre" required />
+          </div>
+          <div class="field">
+            <label style="color:#7fb8d4;">Email</label>
+            <input type="email" name="email" ngModel placeholder="Nuevo email" required />
+          </div>
+          <div class="field">
+            <label style="color:#7fb8d4;">Edad</label>
+            <input type="number" name="age" ngModel placeholder="Nueva edad" required />
+          </div>
+          <button type="submit" class="btn btn-put">
+            <span class="btn-icon">↺</span> Reemplazar
+          </button>
+        </form>
+      </section>
+
+      <!-- PATCH -->
+      <section class="panel panel-patch">
+        <div class="panel-header">
+          <span class="method-badge badge-patch">PATCH</span>
+          <h2 style="color:#daeeff;">Actualizar Parcial</h2>
+        </div>
+        <form #patchForm="ngForm" (ngSubmit)="onPatch(patchForm.value.id, patchForm.value); patchForm.reset()" class="form">
+          <div class="field">
+            <label style="color:#7fb8d4;">ID <span style="color:#ff5f5f;">*</span></label>
+            <input type="text" name="id" ngModel placeholder="ID del objeto" required />
+          </div>
+          <div class="field">
+            <label style="color:#7fb8d4;">Nombre <span style="color:rgba(127,184,212,0.5);font-size:0.72rem;">(opcional)</span></label>
+            <input type="text" name="name" ngModel placeholder="Nuevo nombre" />
+          </div>
+          <div class="field">
+            <label style="color:#7fb8d4;">Email <span style="color:rgba(127,184,212,0.5);font-size:0.72rem;">(opcional)</span></label>
+            <input type="email" name="email" ngModel placeholder="Nuevo email" />
+          </div>
+          <div class="field">
+            <label style="color:#7fb8d4;">Edad <span style="color:rgba(127,184,212,0.5);font-size:0.72rem;">(opcional)</span></label>
+            <input type="number" name="age" ngModel placeholder="Nueva edad" />
+          </div>
+          <button type="submit" class="btn btn-patch">
+            <span class="btn-icon">✎</span> Actualizar
+          </button>
+        </form>
+      </section>
+
+      <!-- DELETE -->
+      <section class="panel panel-delete">
+        <div class="panel-header">
+          <span class="method-badge badge-delete">DELETE</span>
+          <h2 style="color:#daeeff;">Eliminar Registro</h2>
+        </div>
+        <form #deleteForm="ngForm" (ngSubmit)="onDelete(deleteForm.value.id); deleteForm.reset()" class="form">
+          <div class="field">
+            <label style="color:#7fb8d4;">ID</label>
+            <input type="text" name="id" ngModel placeholder="ID del objeto a eliminar" required />
+          </div>
+          <div class="delete-warning">
+            ⚠ Esta acción no se puede deshacer
+          </div>
+          <button type="submit" class="btn btn-delete">
+            <span class="btn-icon">✕</span> Eliminar
+          </button>
+        </form>
+      </section>
     </div>
+  </div>
 </div>
