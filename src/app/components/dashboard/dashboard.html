@@ -1,0 +1,143 @@
+<div class="min-h-screen bg-gray-100 py-8 px-4">
+    <div class="max-w-4xl mx-auto">
+        <h1 class="text-4xl font-bold text-center text-gray-800 mb-8">API REST Front</h1>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- GET Request -->
+            <div class="bg-white col-span-2 rounded-lg shadow-md p-6">
+                <h2 class="text-2xl font-semibold text-green-600 mb-4">GET Request</h2>
+                <div class="space-y-4">
+                    <p class="text-sm text-gray-600">Fetch all items from the API</p>
+                    <button (click)="ngOnInit()"
+                        class="w-full bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition duration-200">
+                        Send GET Request
+                    </button>
+                </div>
+                <div *ngIf="items.length > 0" class="mt-4">
+                    <h3 class="font-semibold text-gray-700 mb-2">Results:</h3>
+                    <ul class="space-y-2">
+                        <li *ngFor="let item of items" class="p-2 bg-gray-100 rounded">
+                            <p><strong>ID:</strong> {{ item.id }}</p>
+                            <p><strong>Name:</strong> {{ item.name }}</p>
+                            <p *ngIf="item.data?.age"><strong>Age:</strong> {{ item.data?.age }}</p>
+                            <p *ngIf="item.data?.email"><strong>Email:</strong> {{ item.data?.email }}</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- POST Request -->
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-2xl font-semibold text-blue-600 mb-4">POST Request</h2>
+                <form #postForm="ngForm" (ngSubmit)="onCreate(postForm.value)" class="space-y-4">
+                    <div>
+                        <label for="postName" class="block text-sm font-medium text-gray-700 mb-1">Name</label>
+                        <input type="text" id="postName" name="name" ngModel placeholder="Enter name"
+                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                            required>
+                    </div>
+                    <div>
+                        <label for="postEmail" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                        <input type="email" id="postEmail" name="email" ngModel placeholder="Enter email"
+                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                            required>
+                    </div>
+                    <div>
+                        <label for="postAge" class="block text-sm font-medium text-gray-700 mb-1">Age</label>
+                        <input type="number" id="postAge" name="age" ngModel placeholder="Enter age"
+                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                            required>
+                    </div>
+                    <button type="submit"
+                        class="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition duration-200">
+                        Send POST Request
+                    </button>
+                </form>
+            </div>
+
+            <!-- PUT Request -->
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-2xl font-semibold text-yellow-600 mb-4">PUT Request</h2>
+                <form #putForm="ngForm" (ngSubmit)="onUpdate(putForm.value.id, putForm.value)" class="space-y-4">
+                    <div>
+                        <label for="putId" class="block text-sm font-medium text-gray-700 mb-1">ID</label>
+                        <input type="text" id="putId" name="id" ngModel placeholder="Enter item ID"
+                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+                            required>
+                    </div>
+                    <div>
+                        <label for="putName" class="block text-sm font-medium text-gray-700 mb-1">Name</label>
+                        <input type="text" id="putName" name="name" ngModel placeholder="Enter name"
+                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+                            required>
+                    </div>
+                    <div>
+                        <label for="putAge" class="block text-sm font-medium text-gray-700 mb-1">Age</label>
+                        <input type="number" id="putAge" name="age" ngModel placeholder="Enter age"
+                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+                            required>
+                    </div>
+                    <div>
+                        <label for="putEmail" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                        <input type="email" id="putEmail" name="email" ngModel placeholder="Enter email"
+                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+                            required>
+                    </div>
+                    <button type="submit"
+                        class="w-full bg-yellow-600 text-white py-2 px-4 rounded-md hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 transition duration-200">
+                        Send PUT Request
+                    </button>
+                </form>
+            </div>
+
+            <!-- PATCH Request -->
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-2xl font-semibold text-purple-600 mb-4">PATCH Request</h2>
+                <form #patchForm="ngForm" (ngSubmit)="onUpdate(patchForm.value.id, patchForm.value)" class="space-y-4">
+                    <div>
+                        <label for="patchId" class="block text-sm font-medium text-gray-700 mb-1">ID</label>
+                        <input type="text" id="patchId" name="id" ngModel placeholder="Enter item ID"
+                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                            required>
+                    </div>
+                    <div>
+                        <label for="patchName" class="block text-sm font-medium text-gray-700 mb-1">Name (optional)</label>
+                        <input type="text" id="patchName" name="name" ngModel placeholder="Enter name"
+                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent">
+                    </div>
+                    <div>
+                        <label for="patchAge" class="block text-sm font-medium text-gray-700 mb-1">Age (optional)</label>
+                        <input type="number" id="patchAge" name="age" ngModel placeholder="Enter age"
+                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent">
+                    </div>
+                    <div>
+                        <label for="patchEmail" class="block text-sm font-medium text-gray-700 mb-1">Email (optional)</label>
+                        <input type="email" id="patchEmail" name="email" ngModel placeholder="Enter new email"
+                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent">
+                    </div>
+                    <button type="submit"
+                        class="w-full bg-purple-600 text-white py-2 px-4 rounded-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 transition duration-200">
+                        Send PATCH Request
+                    </button>
+                </form>
+            </div>
+
+            <!-- DELETE Request -->
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-2xl font-semibold text-red-600 mb-4">DELETE Request</h2>
+                <form #deleteForm="ngForm" (ngSubmit)="onDelete(deleteForm.value.id)" class="space-y-4">
+                    <div>
+                        <label for="deleteId" class="block text-sm font-medium text-gray-700 mb-1">ID</label>
+                        <input type="text" id="deleteId" name="id" ngModel placeholder="Enter item ID"
+                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
+                            required>
+                    </div>
+                    <button type="submit"
+                        class="w-full bg-red-600 text-white py-2 px-4 rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition duration-200">
+                        Send DELETE Request
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

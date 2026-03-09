@@ -67,7 +67,8 @@
               "buildTarget": "frontApiREST:build:production"
             },
             "development": {
-              "buildTarget": "frontApiREST:build:development"
+              "buildTarget": "frontApiREST:build:development",
+              "proxyConfig": "proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"
